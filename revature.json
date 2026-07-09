@@ -1,0 +1,35 @@
+{
+  "type": "java",
+  "testFiles": [
+    {
+      "path": "src/test/java/lab/StoreServiceTest.java",
+      "testCases": [
+        {
+          "methodName": "testPersistStore",
+          "label": "Verify persisting a store",
+          "description": "Ensures that persistStore saves a Store object, returns the saved entity, and invokes the repository's save method exactly once with no additional interactions."
+        },
+        {
+          "methodName": "testGetAllStores",
+          "label": "Verify retrieving all stores",
+          "description": "Checks that getAllStores returns the expected number of Store objects and that the repository's findAll method is invoked exactly once with no further interactions."
+        },
+        {
+          "methodName": "testGetStoreByID",
+          "label": "Verify retrieving a store by ID",
+          "description": "Ensures that getStoreById returns the correct Store for a given ID and that findById is invoked exactly once with no additional interactions."
+        },
+        {
+          "methodName": "testDeleteStore",
+          "label": "Verify deleting a store by ID",
+          "description": "Confirms that deleteStore correctly calls deleteById once for the provided ID and performs no other repository interactions."
+        },
+        {
+          "methodName": "testUpdateStore",
+          "label": "Verify updating an existing store",
+          "description": "Ensures that updateStore finds a Store by ID, updates it, saves it, returns the updated Store, and invokes the repository methods findById and save exactly once with no further interactions."
+        }
+      ]
+    }
+  ]
+}
