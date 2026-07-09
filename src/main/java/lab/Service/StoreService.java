@@ -3,9 +3,12 @@ package lab.Service;
 import lab.Model.Store;
 import lab.Repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class StoreService {
     StoreRepository storeRepository;
     @Autowired
@@ -18,14 +21,14 @@ public class StoreService {
      * @return the persisted store
      */
     public Store persistStore(Store store){
-        return null;
+        return storeRepository.save(store);
     }
     /**
      * TODO: get all store entities
      * @return all store entities
      */
     public List<Store> getAllStores(){
-        return null;
+        return storeRepository.findAll();
     }
     /**
      * TODO: given an id of a store, return the store.
@@ -34,13 +37,20 @@ public class StoreService {
      * @return a store entity
      */
     public Store getStoreById(long id){
+        Optional<Store> optionalStore = storeRepository.findById(id);
+
+        if (optionalStore.isPresent()) {
+            return optionalStore.get();
+        } else {
         return null;
+        }
     }
     /**
      * TODO: given an id of an existing store, delete the store
      */
     public void deleteStore(long id){
 //        code here
+        storeRepository.deleteById(id);
     }
     /**
      * TODO: given an id and some replacement data for a store, overwrite the data of an existing store,
@@ -48,7 +58,19 @@ public class StoreService {
      * @return the updated store entity
      */
     public Store updateStore(long id, Store replacement){
+
+        Optional<Store> optionalStore = storeRepository.findById(id);
+
+        if (optionalStore.isPresent()) {
+            Store store = optionalStore.get();
+
+            store.setName(replacement.getName());
+
+            return storeRepository.save(store);
+        } else {}
         return null;
     }
 
-}
+    }
+
+
